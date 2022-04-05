@@ -6,7 +6,7 @@
 /*   By: ybestrio <ybestrio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:41:32 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/04/05 11:03:44 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:33:08 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 void	ft_search(Phonebook& book)
 {
 	int i = 0;
+	std::string tmp;
 	
 	std::cout << std::setw(10) << "Index";
 	std::cout << " | ";
@@ -28,37 +29,40 @@ void	ft_search(Phonebook& book)
 	std::cout << std::setw(10) << "Last name";
 	std::cout << " | ";
 	std::cout << std::setw(10) << "Nickname";
-	while (book.contact[i].index != -1 && i < 8)
+	while (book.getCopy(i).getIndex() != -1 && i < 8)
 	{
 		std::cout << std::endl;
-		std::cout << std::setw(10) << book.contact[i].index;
+		std::cout << std::setw(10) << book.getContact(i).getIndex();
 		std::cout << " | ";
-		if (book.contact[i].first.size() > 10)
+		if (book.getContact(i).getFirst().size() > 10)
 		{
-			book.contact[i].first.resize(9);
-			std::cout << book.contact[i].first;
+			tmp = book.getContact(i).getFirst();
+			tmp.resize(9);
+			std::cout << tmp;
 			std::cout << ".";
 		}
 		else 
-			std::cout << std::setw(10) << book.contact[i].first;
+			std::cout << std::setw(10) << book.getCopy(i).getFirst();
 		std::cout << " | ";
-		if (book.contact[i].last.size() > 10)
+		if (book.getCopy(i).getLast().size() > 10)
 		{
-			book.contact[i].last.resize(9);
-			std::cout << book.contact[i].last;
+			tmp = book.getCopy(i).getLast();
+			tmp.resize(9);
+			std::cout << tmp;
 			std::cout << ".";
 		}
 		else
-			std::cout << std::setw(10) << book.contact[i].last;
+			std::cout << std::setw(10) << book.getCopy(i).getLast();
 		std::cout << " | ";
-		if (book.contact[i].nickname.size() > 10)
+		if (book.getContact(i).getNickname().size() > 10)
 		{
-			book.contact[i].nickname.resize(9);
-			std::cout << book.contact[i].nickname;
+			tmp = book.getCopy(i).getNickname();
+			tmp.resize(9);
+			std::cout << tmp;
 			std::cout << ".";
 		}
 		else
-		std::cout << std::setw(10) << book.contact[i].nickname;
+		std::cout << std::setw(10) << book.getContact(i).getNickname();
 		i++;
 	}
 	std::cout << std::endl;
@@ -74,8 +78,12 @@ void	ft_newuser(Phonebook& book)
 		std::cout << "Please enter the first name" << std::endl;
 		std::getline(std::cin, temp);
 	}	
-	book.contact[book.lastmod].first = temp;	
-
+	book.getContact(book.lastmod).setFirst(temp);	
+	
+	/*----------------------------------------------------------------
+	std::cout << "this is the first name :" << book.getContact(0).getFirst() << std::endl;	
+	----------------------------------------------------------------*/	
+	
 	temp[0] = '\0';
 
 	while (temp[0] == '\0')
@@ -83,7 +91,7 @@ void	ft_newuser(Phonebook& book)
 		std::cout << "Please enter the last name" << std::endl;
 		std::getline(std::cin, temp);
 	}	
-	book.contact[book.lastmod].last = temp;	
+	book.getContact(book.lastmod).setLast(temp);	
 
 	temp[0] = '\0';
 	while (temp[0] == '\0')
@@ -91,7 +99,7 @@ void	ft_newuser(Phonebook& book)
 		std::cout << "Please enter the nickname" << std::endl;
 		std::getline(std::cin, temp);
 	}	
-	book.contact[book.lastmod].nickname = temp;	
+	book.getContact(book.lastmod).setNickname(temp);	
 	
 	temp[0] = '\0';
 	while (temp[0] == '\0')
@@ -99,7 +107,7 @@ void	ft_newuser(Phonebook& book)
 		std::cout << "Please enter the darkest secret of the person" << std::endl;
 		std::getline(std::cin, temp);
 	}	
-	book.contact[book.lastmod].secret = temp;	
+	book.getContact(book.lastmod).setSecret(temp);
 	
 	temp[0] = '\0';
 	while (temp[0] == '\0')
@@ -107,9 +115,9 @@ void	ft_newuser(Phonebook& book)
 		std::cout << "Please enter the phone number" << std::endl;
 		std::getline(std::cin, temp);
 	}	
-	book.contact[book.lastmod].phone = temp;	
+	book.getContact(book.lastmod).setPhone(temp);
 	
-	book.contact[book.lastmod].index = book.lastmod;
+	book.getContact(book.lastmod).setIndex(book.lastmod);
 	if (book.lastmod < 8)
 		book.lastmod++;
 	else 	

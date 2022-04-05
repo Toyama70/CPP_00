@@ -43,15 +43,16 @@ int	ft_extract()
 
 void ft_retrieve(Phonebook& book, int i)
 {
-	while(book.contact[i].index != -1 && i < 8)
+	while(book.getContact(i).getIndex() != -1 && i < 8)
 	{
-		if (book.contact[i].index == i)
+		if (book.getContact(i).getIndex() == i)
 		{
-			std::cout << "First name : " << book.contact[i].first << std::endl;
-			std::cout << "Last name : " << book.contact[i].last << std::endl;
-			std::cout << "Nickname : " << book.contact[i].nickname << std::endl;
-			std::cout << "Phone number : " << book.contact[i].phone << std::endl;
-			std::cout << "Secret : " << book.contact[i].secret << std::endl;
+			std::cout << "First name : " << book.getContact(i).getFirst() << std::endl;
+			std::cout << "Last name : " << book.getContact(i).getLast() << std::endl;
+			std::cout << "Nickname : " << book.getContact(i).getNickname() << std::endl;
+			std::cout << "Phone number : " << book.getContact(i).getPhone() << std::endl;
+			std::cout << "Secret : " << book.getContact(i).getSecret() << std::endl;
+			break;
 		}
 		i++;
 	}

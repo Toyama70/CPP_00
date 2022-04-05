@@ -6,7 +6,7 @@
 /*   By: ybestrio <ybestrio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:24:43 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/04/04 19:09:54 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:12:38 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ class Phonebook {
 
     public:
 	Phonebook(void);
-	int lastmod;
-
-	contact contact[10];
-
-	
 	~Phonebook(void);
+	
+	int		lastmod;
+	
+	contact	&getContact(int index);
+
+	contact getCopy(int index);
+
+	private :
+	contact contact[10];	
 };
 
 

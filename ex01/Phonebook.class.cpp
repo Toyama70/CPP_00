@@ -6,7 +6,7 @@
 /*   By: ybestrio <ybestrio@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/04 11:24:52 by ybestrio          #+#    #+#             */
-/*   Updated: 2022/04/05 11:03:41 by ybestrio         ###   ########.fr       */
+/*   Updated: 2022/04/05 14:13:01 by ybestrio         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,23 @@
 #include "PhoneBook.class.hpp"
 #include "Contact.class.hpp"
 
-Phonebook::Phonebook(void) {
+Phonebook::Phonebook(void) 
+{
 	this->lastmod = 0;
 	return ;	
 }
 
-Phonebook::~Phonebook(void) {
+Phonebook::~Phonebook(void) 
+{
+	return;
+}
 
-return;
+contact Phonebook::getCopy(int index)
+{
+	return this->contact[index];
+}
+
+contact &Phonebook::getContact(int index)
+{
+	return this->contact[index];
 }
